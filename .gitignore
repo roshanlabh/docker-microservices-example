@@ -1,3 +1,6 @@
+!/data/dockermongo/README.md
+!/data/dockermysql/README.md
+
 /microservices/interview/composer.lock
 /microservices/interview/vendor/
 /microservices/interview/.git/
