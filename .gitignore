@@ -1,0 +1,13 @@
+/microservices/interview/composer.lock
+/microservices/interview/vendor/
+/microservices/interview/.git/
+/microservices/interview/logs/*
+!/microservices/interview/logs/README.md
+
+/microservices/users/composer.lock
+/microservices/users/vendor/
+/microservices/users/.git/
+/microservices/users/logs/*
+!/microservices/users/logs/README.md
+
+/microservices/ui/.git/

@@ -1,0 +1,31 @@
+version: '2'
+
+volumes:
+    logs:
+        driver: local
+
+services:
+    users:
+        container_name: users-php
+        build:
+             context: ./
+             dockerfile: DockerfilePHP
+        working_dir: /var/www/html
+        command: php -S 0.0.0.0:8082 -t public
+        environment:
+            docker: "true"
+        ports:
+            - 8082:8082
+        volumes:
+            - .:/var/www/html
+            - logs:/var/www/html/logs
+        links:
+            - mongodb
+    mongodb:
+        image: mongo:3.6.3
+        container_name: users-mongodb
+        ports:
+            - 27017:27017
+        command: --noauth
+        volumes:
+            - /home/unify/data/dockermongo:/data/db

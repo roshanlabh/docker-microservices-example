@@ -1,0 +1,9 @@
+.git
+.gitignore
+.dockerignore
+README.md
+Dockerfile
+DockerfileDB
+docker-compose.yml
+CONTRIBUTING.md
+composer.lock

@@ -1,0 +1,70 @@
+version: '2'
+
+volumes:
+    logs:
+        driver: local
+
+services:
+    interview:
+        container_name: interview-php
+        build:
+             context: ./microservices/interview/
+             dockerfile: DockerfilePHP
+        working_dir: /var/www/html
+        command: php -S 0.0.0.0:8081 -t public
+        environment:
+            docker: "true"
+        ports:
+            - 8081:8081
+        volumes:
+            - ./microservices/interview/:/var/www/html
+            - ./microservices/interview/logs:/var/www/html/logs
+        links:
+            - db
+    db:
+        container_name: interview-mysql
+        build:
+             context: ./microservices/interview/
+             dockerfile: DockerfileMysql
+        ports:
+            - 3036:3036
+        volumes:
+            - ./data/dockermysql:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root@123
+            MYSQL_USER: rlabh
+            MYSQL_PASSWORD: rlabh@123
+            MYSQL_DATABASE: slimapp
+    users:
+        container_name: users-php
+        build:
+             context: ./microservices/users/
+             dockerfile: DockerfilePHP
+        working_dir: /var/www/html
+        command: php -S 0.0.0.0:8082 -t public
+        environment:
+            docker: "true"
+        ports:
+            - 8082:8082
+        volumes:
+            - ./microservices/users/:/var/www/html
+            - ./microservices/users/logs:/var/www/html/logs
+        links:
+            - mongodb
+    mongodb:
+        image: mongo:3.6.3
+        container_name: users-mongodb
+        ports:
+            - 27017:27017
+        command: --noauth
+        volumes:
+            - ./data/dockermongo:/data/db
+    gui:
+        container_name: gui-container
+        build:
+             context: ./ui/
+             dockerfile: DockerfileGui
+        ports:
+            - 8080:80
+        volumes:
+            - ./ui/:/var/www/html
