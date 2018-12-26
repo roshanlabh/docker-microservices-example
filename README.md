@@ -1,10 +1,8 @@
-Hi folks,
-
 It is a sample project to demostrate Microservices with Docker.
 
 This app demonstrates the list of candidates (interviewee/jobseeker) and their feedbacks from interviewer. So it has basically 3 main components.
 
-    1. Users microservice: This service handles add, edit and delete of users. It is created in PHP (Slimframework) and mongoDB.
+    1. Users microservice: This service handles add, edit and delete of users. It is created in PHP (Slimframework) and MongoDB.
 
     2. Interview microservice: This service keeps interview rating and feedback of above users. and It is created with PHP (Slimframework) and MySQL.
 
@@ -13,7 +11,7 @@ This app demonstrates the list of candidates (interviewee/jobseeker) and their f
 
 So to make this app work properly on your localsystem. Please follow directory structure strickly.
 
-- /var/www/html/unify-demo-app/
+- /docker-microservices-example/
     - data/
         - dockermongo/
         - dockermysql/

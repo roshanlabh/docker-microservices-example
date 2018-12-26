@@ -3,7 +3,7 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-//CORS
+// Enable CORS
 $app->options('/{routes:.+}', function ($request, $response, $args) {
     return $response;
 });
@@ -104,7 +104,7 @@ $app->put('/api/user/[{id}]', function ($request, $response, $args) {
     $input['id'] = $args['id'];
 
     $obj = new stdClass;
-    if($result) {  // TODO: Need to see how can we exact whether user was saved or not
+    if($result) {
         $obj->responseCode = 0;
         $obj->responseText = "Successfully Updated.";
     } else {
@@ -126,7 +126,7 @@ $app->delete('/api/user/[{id}]', function ($request, $response, $args) {
     $result = $this->mongo->executeBulkWrite($this->sCollectionName, $delRec, $writeConcern);
 
     $obj = new stdClass;
-    if($result) {  // TODO: Need to see how can we exact whether user was saved or not
+    if($result) {
         $obj->responseCode = 0;
         $obj->responseText = "Successfully deleted.";
     } else {
